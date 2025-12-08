@@ -24,6 +24,5 @@ add_executable(ProyectoFinalAlgoritmos main.cpp
         src/Modelos/Ciclo.cpp
         src/Modelos/Grupo.cpp
         src/Modelos/Profesor.cpp
-        src/Utilidades/Comunes.cpp
         src/Utilidades/Validaciones.cpp
 )
