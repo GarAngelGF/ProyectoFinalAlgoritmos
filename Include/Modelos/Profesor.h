@@ -10,32 +10,36 @@ class Profesor {
 private:
     string boletaTrabajador;
     string nombreCompleto;
-    string cedula;
     string telefono;
-    string email;
     Direccion direccion;
-    string gruposAsignados; // IDs separados por coma o pipe
+
+    // Nuevo atributo para la vinculación solicitada
+    string idGrupoTitular;
+
+    // Se mantiene por si el profesor da clases en varios grupos además de ser titular
+    string gruposAsignados;
 
 public:
     Profesor();
 
+    // Getters
     string getBoletaTrabajador() const;
     string getNombreCompleto() const;
-    string getCedula() const;
     string getTelefono() const;
-    string getEmail() const;
     Direccion getDireccion() const;
+    string getIdGrupoTitular() const; // Nuevo Getter
     string getGruposAsignados() const;
 
+    // Setters
     void setBoletaTrabajador(const string& b);
     void setNombreCompleto(const string& n);
-    void setCedula(const string& c);
     void setTelefono(const string& t);
-    void setEmail(const string& e);
     void setDireccion(Direccion d);
+    void setIdGrupoTitular(const string& id); // Nuevo Setter
     void setGruposAsignados(const string& g);
 
-    // Método extra útil para negocio
+    // Meetodo extra utilitario
     void agregarGrupo(string idGrupo);
 };
+
 #endif //PROYECTOFINALALGORITMOS_PROFESOR_H
