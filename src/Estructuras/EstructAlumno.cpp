@@ -11,6 +11,7 @@ ListaAlumnos::~ListaAlumnos() {
     }
 }
 
+// --- INSERTAR (Lista Doble) ---
 void ListaAlumnos::insertar(Alumno alumno) {
     NodoAlumno* nuevo = new NodoAlumno(alumno);
     if (!cabeza) {
@@ -22,6 +23,7 @@ void ListaAlumnos::insertar(Alumno alumno) {
     }
 }
 
+// --- ELIMINAR (Lista Doble) ---
 void ListaAlumnos::eliminar(string boleta) {
     if (!cabeza) return;
 
@@ -32,7 +34,7 @@ void ListaAlumnos::eliminar(string boleta) {
             if (actual == cabeza) {
                 cabeza = actual->siguiente;
                 if (cabeza) cabeza->anterior = nullptr;
-                else cola = nullptr; // Si la lista quedó vacía
+                else cola = nullptr; // La lista quedó vacía
             }
             // Caso 2: Es la cola
             else if (actual == cola) {
@@ -45,7 +47,7 @@ void ListaAlumnos::eliminar(string boleta) {
                 actual->siguiente->anterior = actual->anterior;
             }
             delete actual;
-            cout << ">> Alumno eliminado." << endl;
+            cout << ">> Alumno dado de baja correctamente." << endl;
             return;
         }
         actual = actual->siguiente;
@@ -53,6 +55,7 @@ void ListaAlumnos::eliminar(string boleta) {
     cout << ">> Alumno no encontrado." << endl;
 }
 
+// --- BUSCAR (Lineal) ---
 Alumno* ListaAlumnos::buscar(string boleta) {
     NodoAlumno* temp = cabeza;
     while (temp) {
@@ -62,51 +65,100 @@ Alumno* ListaAlumnos::buscar(string boleta) {
     return nullptr;
 }
 
+// --- LISTAR ---
 void ListaAlumnos::listar(bool soloActivos) {
     NodoAlumno* temp = cabeza;
-    cout << "--- LISTA ALUMNOS ---" << endl;
+    cout << "--- LISTA ALUMNOS (Doble Enlace) ---" << endl;
+    if (!cabeza) cout << "(Vacia)" << endl;
+
     while (temp) {
-        if (!soloActivos || temp->dato.getEstatusInscrito()) {
-            cout << temp->dato.getBoleta() << " - " << temp->dato.getNombreCompleto() 
+        bool mostrar = !soloActivos || temp->dato.getEstatusInscrito();
+        if (mostrar) {
+            cout << temp->dato.getBoleta() << " - " << temp->dato.getNombreCompleto()
                  << " [" << (temp->dato.getEstatusInscrito() ? "ACTIVO" : "BAJA") << "]" << endl;
         }
         temp = temp->siguiente;
     }
 }
 
+// --- PERSISTENCIA JSON ---
+
 void ListaAlumnos::guardarEnArchivo() {
-    ofstream archivo("data/alumnos.txt");
+    ofstream archivo("data/alumnos.json");
+    if (!archivo.is_open()) return;
+
+    archivo << "[\n";
     NodoAlumno* temp = cabeza;
     while (temp) {
-        // Serialización simple separada por '|'
-        archivo << temp->dato.getBoleta() << "|"
-                << temp->dato.getNombreCompleto() << "|"
-                << temp->dato.getIdGrupoInscrito() << "|"
-                << (temp->dato.getEstatusInscrito() ? "1" : "0") << endl;
-        // Nota: En un sistema real, guardarías TODOS los campos (fecha, direccion, etc.)
+        archivo << "  {\n";
+        archivo << "    \"boleta\": \"" << temp->dato.getBoleta() << "\",\n";
+        archivo << "    \"nombre\": \"" << temp->dato.getNombreCompleto() << "\",\n";
+        archivo << "    \"curp\": \"" << temp->dato.getCurp() << "\",\n";
+        archivo << "    \"grupo\": \"" << temp->dato.getIdGrupoInscrito() << "\",\n";
+        archivo << "    \"ciclo\": \"" << temp->dato.getNombreCiclo() << "\",\n";
+        archivo << "    \"estatus\": \"" << (temp->dato.getEstatusInscrito() ? "1" : "0") << "\"\n";
+        archivo << "  }";
+
+        if (temp->siguiente) archivo << ","; // Coma si hay más elementos
+        archivo << "\n";
+
         temp = temp->siguiente;
     }
+    archivo << "]";
     archivo.close();
 }
 
+string ListaAlumnos::extraerValorJson(string linea) {
+    size_t posDosPuntos = linea.find(':');
+    if (posDosPuntos == string::npos) return "";
+
+    string valor = linea.substr(posDosPuntos + 1);
+
+    // Limpiar comillas
+    size_t firstQuote = valor.find('\"');
+    size_t lastQuote = valor.rfind('\"');
+
+    if (firstQuote != string::npos && lastQuote != string::npos && lastQuote > firstQuote) {
+        return valor.substr(firstQuote + 1, lastQuote - firstQuote - 1);
+    }
+    return "";
+}
+
 void ListaAlumnos::cargarDeArchivo() {
-    ifstream archivo("data/alumnos.txt");
+    ifstream archivo("data/alumnos.json");
     if (!archivo.is_open()) return;
 
     string linea;
-    while (getline(archivo, linea)) {
-        stringstream ss(linea);
-        string segmento;
-        Alumno a;
-        
-        string boleta, nombre, grupo, estadoStr;
-        
-        getline(ss, boleta, '|'); a.setBoleta(boleta);
-        getline(ss, nombre, '|'); a.setNombreCompleto(nombre);
-        getline(ss, grupo, '|');  a.setIdGrupoInscrito(grupo);
-        getline(ss, estadoStr, '|'); a.setEstatusInscrito(estadoStr == "1");
+    Alumno aActual;
+    bool leyendoObjeto = false;
 
-        insertar(a);
+    while (getline(archivo, linea)) {
+        if (linea.find("{") != string::npos) {
+            leyendoObjeto = true;
+            aActual = Alumno(); // Reset
+            aActual.setEstatusInscrito(false);
+            aActual.setIdGrupoInscrito("SIN_ASIGNAR");
+        }
+        else if (linea.find("}") != string::npos && leyendoObjeto) {
+            insertar(aActual);
+            leyendoObjeto = false;
+        }
+        else if (leyendoObjeto) {
+            if (linea.find("\"boleta\"") != string::npos)
+                aActual.setBoleta(extraerValorJson(linea));
+            else if (linea.find("\"nombre\"") != string::npos)
+                aActual.setNombreCompleto(extraerValorJson(linea));
+            else if (linea.find("\"curp\"") != string::npos)
+                aActual.setCurp(extraerValorJson(linea));
+            else if (linea.find("\"grupo\"") != string::npos)
+                aActual.setIdGrupoInscrito(extraerValorJson(linea));
+            else if (linea.find("\"ciclo\"") != string::npos)
+                aActual.setNombreCiclo(extraerValorJson(linea));
+            else if (linea.find("\"estatus\"") != string::npos) {
+                string val = extraerValorJson(linea);
+                aActual.setEstatusInscrito(val == "1");
+            }
+        }
     }
     archivo.close();
 }

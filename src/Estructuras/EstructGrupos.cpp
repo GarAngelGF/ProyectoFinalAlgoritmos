@@ -5,15 +5,21 @@ ListaGrupos::ListaGrupos() : cabeza(nullptr) {}
 ListaGrupos::~ListaGrupos() {
     if (!cabeza) return;
     NodoGrupo* actual = cabeza;
-    do {
+    // Romper la circularidad para eliminar sin loops infinitos (técnica segura)
+    NodoGrupo* ultimo = cabeza;
+    while (ultimo->siguiente != cabeza) {
+        ultimo = ultimo->siguiente;
+    }
+    ultimo->siguiente = nullptr; // Rompemos el círculo
+
+    while (actual != nullptr) {
         NodoGrupo* temp = actual;
         actual = actual->siguiente;
         delete temp;
-    } while (actual != cabeza);
-    // Nota: en implementaciones complejas hay que romper el ciclo antes de borrar
-    // pero para este destructor simple funciona si se maneja con cuidado.
+    }
 }
 
+// --- INSERTAR (Circular) ---
 void ListaGrupos::insertar(Grupo grupo) {
     NodoGrupo* nuevo = new NodoGrupo(grupo);
     if (!cabeza) {
@@ -24,8 +30,9 @@ void ListaGrupos::insertar(Grupo grupo) {
         while (temp->siguiente != cabeza) {
             temp = temp->siguiente;
         }
+        // temp es el último nodo
         temp->siguiente = nuevo;
-        nuevo->siguiente = cabeza; // Cierra el círculo
+        nuevo->siguiente = cabeza; // Cerramos el círculo apuntando a la cabeza
     }
 }
 
@@ -39,46 +46,106 @@ bool ListaGrupos::existe(string id) {
     return false;
 }
 
+// --- LISTAR ---
 void ListaGrupos::listar() {
-    if (!cabeza) { cout << "No hay grupos." << endl; return; }
+    if (!cabeza) { cout << "No hay grupos registrados." << endl; return; }
     NodoGrupo* temp = cabeza;
-    cout << "--- LISTA GRUPOS (Circular) ---" << endl;
+    cout << "--- LISTA DE GRUPOS (Circular) ---" << endl;
     do {
-        cout << "Grupo: " << temp->dato.getIdGrupo() << endl;
+        cout << "ID: " << temp->dato.getIdGrupo()
+             << " | Nivel: " << temp->dato.getNivel()
+             << " | Turno: " << temp->dato.getTurno()
+             << " | Sec: " << temp->dato.getSecuencia() << endl;
         temp = temp->siguiente;
     } while (temp != cabeza);
 }
 
+// --- PERSISTENCIA JSON ---
+
 void ListaGrupos::guardarEnArchivo() {
-    if (!cabeza) return;
-    ofstream archivo("data/grupos.txt");
+    ofstream archivo("data/grupos.json");
+    if (!archivo.is_open()) return;
+
+    if (!cabeza) {
+        archivo << "[]";
+        archivo.close();
+        return;
+    }
+
+    archivo << "[\n";
     NodoGrupo* temp = cabeza;
     do {
-        archivo << temp->dato.getIdGrupo() << "|"
-                << temp->dato.getNivel() << "|"
-                << temp->dato.getTurno() << "|"
-                << temp->dato.getSecuencia() << endl;
+        archivo << "  {\n";
+        archivo << "    \"id\": \"" << temp->dato.getIdGrupo() << "\",\n";
+        archivo << "    \"nivel\": \"" << temp->dato.getNivel() << "\",\n";
+        // Convertimos char a string para el JSON
+        archivo << "    \"turno\": \"" << temp->dato.getTurno() << "\",\n";
+        archivo << "    \"secuencia\": \"" << temp->dato.getSecuencia() << "\"\n";
+        archivo << "  }";
+
+        if (temp->siguiente != cabeza) {
+            archivo << ","; // Coma si no es el último (antes de volver a cabeza)
+        }
+        archivo << "\n";
+
         temp = temp->siguiente;
     } while (temp != cabeza);
+
+    archivo << "]";
     archivo.close();
 }
 
+string ListaGrupos::extraerValorJson(string linea) {
+    size_t posDosPuntos = linea.find(':');
+    if (posDosPuntos == string::npos) return "";
+
+    string valor = linea.substr(posDosPuntos + 1);
+
+    // Limpiar comillas
+    size_t firstQuote = valor.find('\"');
+    size_t lastQuote = valor.rfind('\"');
+
+    if (firstQuote != string::npos && lastQuote != string::npos && lastQuote > firstQuote) {
+        return valor.substr(firstQuote + 1, lastQuote - firstQuote - 1);
+    }
+    return "";
+}
+
 void ListaGrupos::cargarDeArchivo() {
-    ifstream archivo("data/grupos.txt");
+    ifstream archivo("data/grupos.json");
     if (!archivo.is_open()) return;
+
     string linea;
+    Grupo gActual;
+    bool leyendoObjeto = false;
+
     while (getline(archivo, linea)) {
-        stringstream ss(linea);
-        string id, n_str, t_str, s_str;
-        
-        getline(ss, id, '|');
-        getline(ss, n_str, '|');
-        getline(ss, t_str, '|');
-        getline(ss, s_str, '|');
-        
-        if(!id.empty()) {
-            Grupo g(id, stoi(n_str), t_str[0], s_str[0]);
-            insertar(g);
+        if (linea.find("{") != string::npos) {
+            leyendoObjeto = true;
+            gActual = Grupo(); // Reset constructor
+        }
+        else if (linea.find("}") != string::npos && leyendoObjeto) {
+            insertar(gActual);
+            leyendoObjeto = false;
+        }
+        else if (leyendoObjeto) {
+            if (linea.find("\"id\"") != string::npos)
+                gActual.setIdGrupo(extraerValorJson(linea));
+
+            else if (linea.find("\"nivel\"") != string::npos) {
+                string val = extraerValorJson(linea);
+                if (!val.empty()) gActual.setNivel(stoi(val));
+            }
+
+            else if (linea.find("\"turno\"") != string::npos) {
+                string val = extraerValorJson(linea);
+                if (!val.empty()) gActual.setTurno(val[0]);
+            }
+
+            else if (linea.find("\"secuencia\"") != string::npos) {
+                string val = extraerValorJson(linea);
+                if (!val.empty()) gActual.setSecuencia(val[0]);
+            }
         }
     }
     archivo.close();

@@ -6,6 +6,7 @@
 #include <iostream>
 #include <sstream>
 
+// Nodo para lista circular
 struct NodoGrupo {
     Grupo dato;
     NodoGrupo* siguiente;
@@ -16,17 +17,20 @@ class ListaGrupos {
 private:
     NodoGrupo* cabeza;
 
+    // Metodo privado auxiliar para leer JSON
+    string extraerValorJson(string linea);
+
 public:
     ListaGrupos();
     ~ListaGrupos();
 
-    void insertar(Grupo grupo); // Inserta al final manteniendo circularidad
+    void insertar(Grupo grupo); // Mantiene la circularidad
     bool existe(string id);
     void listar();
 
-    // El getter de cabeza es útil para recorrer externamente si fuera necesario
     NodoGrupo* getCabeza() const { return cabeza; }
 
+    // Persistencia JSON
     void guardarEnArchivo();
     void cargarDeArchivo();
 };

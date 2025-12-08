@@ -1,12 +1,15 @@
 #ifndef PROYECTOFINALALGORITMOS_ESTRUCTALUMNO_H
 #define PROYECTOFINALALGORITMOS_ESTRUCTALUMNO_H
 
+
 #include "../Modelos/Alumno.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
 
-// Nodo específico para la lista doble
+using namespace std;
+
+// Nodo específico para la LISTA DOBLE
 struct NodoAlumno {
     Alumno dato;
     NodoAlumno* siguiente;
@@ -20,16 +23,19 @@ private:
     NodoAlumno* cabeza;
     NodoAlumno* cola; // Puntero al final para insertar rápido
 
+    // Metodo auxiliar para parseo manual de JSON
+    string extraerValorJson(string linea);
+
 public:
     ListaAlumnos();
-    ~ListaAlumnos(); // Destructor vital
+    ~ListaAlumnos();
 
-    void insertar(Alumno alumno);
+    void insertar(Alumno alumno); // Inserta al final (cola)
     void eliminar(string boleta);
-    Alumno* buscar(string boleta); // Retorna puntero al dato para modificarlo
+    Alumno* buscar(string boleta); // Búsqueda lineal
     void listar(bool soloActivos);
 
-    // Persistencia
+    // Persistencia en JSON
     void guardarEnArchivo();
     void cargarDeArchivo();
 };
