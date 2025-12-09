@@ -1,6 +1,0 @@
-1MA|1|M|A
-1VA|1|V|A
-2MA|2|M|A
-2VA|2|V|A
-3MA|3|M|A
-3VA|3|V|A

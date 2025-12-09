@@ -1,35 +1,36 @@
 #ifndef PROYECTOFINALALGORITMOS_GESTIONESCOLAR_H
 #define PROYECTOFINALALGORITMOS_GESTIONESCOLAR_H
 
-
 #include <iostream>
 #include <string>
 #include <cstdlib>
 #include <ctime>
 
-// Incluimos las estructuras de datos que manejan la memoria
+// Incluimos las estructuras actualizadas
 #include "../Estructuras/EstructAlumno.h"
 #include "../Estructuras/EstructProfe.h"
 #include "../Estructuras/EstructGrupos.h"
 #include "../Estructuras/EstructCiclos.h"
 
-// Incluimos validaciones para pedir datos limpios
 #include "../Utilidades/Validaciones.h"
 
 using namespace std;
 
 class GestionEscolar {
 private:
-    // --- COMPOSICIÓN: El sistema "tiene" listas ---
-    ListaAlumnos alumnos;
-    ListaProfesores profesores;
-    ListaGrupos grupos;
-    ListaCiclos ciclos;
+    // --- Estructuras de Datos ---
+    ListaAlumnos alumnos;      // Lista Doble (JSON)
+    ArbolProfesores profesores; // Árbol Binario (JSON)
+    ListaGrupos grupos;        // Lista Circular (JSON)
+    ListaCiclos ciclos;        // Lista Simple (JSON)
 
     // --- Métodos Privados de Utilidad ---
-    string generarBoletaAlumno();      // Genera boleta (Año + Random)
-    string generarBoletaProfesor();    // Genera ID (DOC + Random)
-    void cargarDatosIniciales();       // Si no hay archivos, crea datos default
+    string generarBoletaAlumno();
+    string generarBoletaProfesor();
+    void cargarDatosIniciales();
+
+    void limpiarPantalla();
+    void pausar();
 
 public:
     GestionEscolar();
@@ -42,10 +43,11 @@ public:
 
     void menuAlumnos();
     void menuProfesores();
-    void menuGrupos();
-    void menuCiclos();
+    void menuGrupos(); // Submenú con opción de ver registros
+    void menuCiclos(); // Submenú con opción de ver registros
 
-    // --- Lógica de Negocio (Fachada) ---
+    // --- Lógica de Negocio ---
+
     // Alumnos
     void registrarAlumno();
     void inscribirAlumno();
@@ -59,6 +61,9 @@ public:
     // Grupos y Ciclos
     void crearGrupo();
     void crearCiclo();
+
+    // --- NUEVO: Reporte General ---
+    void generarReporteGeneral();
 };
 
 #endif //PROYECTOFINALALGORITMOS_GESTIONESCOLAR_H

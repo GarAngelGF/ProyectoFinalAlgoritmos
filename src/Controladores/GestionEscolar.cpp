@@ -2,44 +2,56 @@
 
 // Constructor
 GestionEscolar::GestionEscolar() {
-    srand(time(0)); // Semilla para números aleatorios
+    srand(time(0)); // Semilla para aleatorios
 }
 
-void GestionEscolar::inicializarSistema() {
-    cout << ">> Cargando sistema..." << endl;
+// --- UTILIDADES DE UI ---
+void GestionEscolar::limpiarPantalla() {
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
+}
 
-    // Delegamos la carga a cada lista
+void GestionEscolar::pausar() {
+    cout << "\n";
+    Validaciones::pedirCadena("Presione Enter para continuar...");
+}
+
+// --- INICIALIZACIÓN ---
+void GestionEscolar::inicializarSistema() {
+    limpiarPantalla();
+    cout << ">> Cargando sistema y archivos JSON..." << endl;
+
     ciclos.cargarDeArchivo();
     grupos.cargarDeArchivo();
     profesores.cargarDeArchivo();
     alumnos.cargarDeArchivo();
 
-    // Si no hay ciclos, creamos uno por defecto para que el sistema funcione
     if (ciclos.obtenerCicloActual() == "SIN_CICLO") {
         cargarDatosIniciales();
     }
 }
 
 void GestionEscolar::cargarDatosIniciales() {
-    // Crea un ciclo default si es la primera vez que corre el programa
     Ciclo c;
     c.setNombreCiclo("2024-2025");
     c.setActivo(true);
+    c.setInicio({1,8,2024});
+    c.setFin({15,7,2025});
     ciclos.insertar(c);
     ciclos.guardarEnArchivo();
 
-    // Crea grupos base
     grupos.insertar(Grupo("1MA", 1, 'M', 'A'));
-    grupos.insertar(Grupo("2VA", 2, 'V', 'A'));
     grupos.guardarEnArchivo();
 }
 
-// --- GENERADORES DE ID ---
-
+// --- GENERADORES ID ---
 string GestionEscolar::generarBoletaAlumno() {
     string ciclo = ciclos.obtenerCicloActual();
     string anio = (ciclo.length() >= 4) ? ciclo.substr(0, 4) : "2024";
-    string randomPart = to_string(rand() % 900000 + 100000); // 6 dígitos
+    string randomPart = to_string(rand() % 900000 + 100000);
     return anio + randomPart;
 }
 
@@ -47,70 +59,92 @@ string GestionEscolar::generarBoletaProfesor() {
     return "DOC-" + to_string(rand() % 90000 + 10000);
 }
 
-// --- MENÚ PRINCIPAL ---
+// --- NUEVO: REPORTE GENERAL ---
+void GestionEscolar::generarReporteGeneral() {
+    limpiarPantalla();
+    cout << "========================================" << endl;
+    cout << "      REPORTE GENERAL DEL SISTEMA" << endl;
+    cout << "========================================" << endl;
 
+    cout << "\n>>> 1. CICLOS ESCOLARES REGISTRADOS <<<" << endl;
+    ciclos.listar();
+
+    cout << "\n>>> 2. GRUPOS REGISTRADOS <<<" << endl;
+    grupos.listar();
+
+    cout << "\n>>> 3. PROFESORES REGISTRADOS <<<" << endl;
+    profesores.listar();
+
+    cout << "\n>>> 4. ALUMNOS REGISTRADOS <<<" << endl;
+    alumnos.listar(false); // false para mostrar todos (incluyendo bajas)
+
+    cout << "\n========================================" << endl;
+    cout << "          FIN DEL REPORTE" << endl;
+    cout << "========================================" << endl;
+}
+
+// --- MENÚ PRINCIPAL ---
 void GestionEscolar::menuPrincipal() {
     int opc;
     do {
-        // system("cls"); // Opcional: limpiar pantalla (windows)
-        cout << "\n===============================" << endl;
+        limpiarPantalla();
+        cout << "===============================" << endl;
         cout << "   SISTEMA DE CONTROL ESCOLAR" << endl;
         cout << "===============================" << endl;
         cout << "1. Gestion de Alumnos" << endl;
         cout << "2. Gestion de Profesores" << endl;
-        cout << "3. Ver Grupos" << endl;
-        cout << "4. Ver Ciclos Escolares" << endl;
+        cout << "3. Gestion de Grupos" << endl;
+        cout << "4. Gestion de Ciclos Escolares" << endl;
+        cout << "5. Generar Reporte General (TODO)" << endl; // Nueva Opción
         cout << "0. Salir" << endl;
         cout << "===============================" << endl;
 
-        opc = Validaciones::pedirEntero("Seleccione una opcion: ", 0, 4);
+        opc = Validaciones::pedirEntero("Seleccione una opcion: ", 0, 5);
 
         switch (opc) {
             case 1: menuAlumnos(); break;
             case 2: menuProfesores(); break;
-            case 3:
-                grupos.listar();
-                Validaciones::pedirCadena("Presione Enter para continuar...");
-                break;
-            case 4:
-                ciclos.listar();
-                Validaciones::pedirCadena("Presione Enter para continuar...");
-                break;
-            case 0: cout << "Saliendo del sistema..." << endl; break;
+            case 3: menuGrupos(); break;
+            case 4: menuCiclos(); break;
+            case 5: generarReporteGeneral(); pausar(); break;
+            case 0: cout << "Saliendo..." << endl; break;
         }
     } while (opc != 0);
 }
 
-// --- GESTIÓN DE ALUMNOS ---
+// ==========================================
+//           GESTIÓN DE ALUMNOS
+// ==========================================
 
 void GestionEscolar::menuAlumnos() {
     int opc;
     do {
-        cout << "\n--- MENU ALUMNOS ---" << endl;
+        limpiarPantalla();
+        cout << "--- MENU ALUMNOS ---" << endl;
         cout << "1. Registrar Nuevo Alumno" << endl;
         cout << "2. Inscribir Alumno a Grupo" << endl;
         cout << "3. Buscar Alumno" << endl;
-        cout << "4. Dar de Baja (Eliminar)" << endl;
-        cout << "5. Listar Todos" << endl;
+        cout << "4. Dar de Baja" << endl;
+        cout << "5. Listar Todos los Registros" << endl;
         cout << "0. Regresar" << endl;
 
         opc = Validaciones::pedirEntero("Opcion: ", 0, 5);
 
         switch(opc) {
-            case 1: registrarAlumno(); break;
-            case 2: inscribirAlumno(); break;
-            case 3: buscarAlumno(); break;
-            case 4: darBajaAlumno(); break;
-            case 5: alumnos.listar(false); break;
+            case 1: registrarAlumno(); pausar(); break;
+            case 2: inscribirAlumno(); pausar(); break;
+            case 3: buscarAlumno(); pausar(); break;
+            case 4: darBajaAlumno(); pausar(); break;
+            case 5: alumnos.listar(false); pausar(); break;
         }
     } while (opc != 0);
 }
 
 void GestionEscolar::registrarAlumno() {
-    cout << "\n--- REGISTRO DE ALUMNO ---" << endl;
+    limpiarPantalla();
+    cout << "--- REGISTRO DE ALUMNO ---" << endl;
     Alumno nuevo;
 
-    // 1. Usamos Validaciones para pedir datos seguros
     nuevo.setNombreCompleto(Validaciones::pedirCadena("Nombre Completo: "));
     nuevo.setCurp(Validaciones::pedirCadena("CURP: "));
 
@@ -120,49 +154,42 @@ void GestionEscolar::registrarAlumno() {
 
     nuevo.setNacimiento(Validaciones::pedirFecha("Fecha de Nacimiento"));
 
-    // Datos del tutor
     Tutor t;
     t.nombre = Validaciones::pedirCadena("Nombre del Tutor: ");
     t.parentesco = Validaciones::pedirCadena("Parentesco: ");
+    t.telefono = Validaciones::pedirCadena("Telefono Tutor: ");
     nuevo.setTutor(t);
 
-    // 2. Generamos datos automáticos
     nuevo.setBoleta(generarBoletaAlumno());
     nuevo.setNombreCiclo(ciclos.obtenerCicloActual());
     nuevo.setIdGrupoInscrito("SIN_ASIGNAR");
     nuevo.setEstatusInscrito(false);
 
-    // 3. Insertamos en la lista y guardamos
     alumnos.insertar(nuevo);
     alumnos.guardarEnArchivo();
 
-    cout << ">> Alumno registrado con EXITO. Boleta asignada: " << nuevo.getBoleta() << endl;
+    cout << ">> Alumno registrado con EXITO. Boleta: " << nuevo.getBoleta() << endl;
 }
 
 void GestionEscolar::inscribirAlumno() {
-    cout << "\n--- INSCRIPCION ---" << endl;
     string boleta = Validaciones::pedirCadena("Ingrese Boleta del Alumno: ");
-
-    // Buscamos el objeto real en la lista (puntero)
     Alumno* alu = alumnos.buscar(boleta);
 
     if (alu != nullptr) {
-        cout << "Alumno encontrado: " << alu->getNombreCompleto() << endl;
-        cout << "Grupo actual: " << alu->getIdGrupoInscrito() << endl;
+        cout << "Alumno: " << alu->getNombreCompleto() << endl;
 
-        grupos.listar(); // Mostramos opciones
+        cout << "\nGrupos disponibles:" << endl;
+        grupos.listar();
 
-        string idGrupo = Validaciones::pedirCadena("Ingrese ID del Grupo a inscribir: ");
+        string idGrupo = Validaciones::pedirCadena("Ingrese ID del Grupo: ");
 
         if (grupos.existe(idGrupo)) {
             alu->setIdGrupoInscrito(idGrupo);
             alu->setEstatusInscrito(true);
-
-            // Guardamos cambios inmediatamente
             alumnos.guardarEnArchivo();
-            cout << ">> Inscripcion realizada correctamente." << endl;
+            cout << ">> Inscripcion realizada." << endl;
         } else {
-            cout << ">> Error: El grupo no existe." << endl;
+            cout << ">> Error: Grupo no existe." << endl;
         }
     } else {
         cout << ">> Error: Alumno no encontrado." << endl;
@@ -170,15 +197,15 @@ void GestionEscolar::inscribirAlumno() {
 }
 
 void GestionEscolar::buscarAlumno() {
-    string boleta = Validaciones::pedirCadena("Ingrese Boleta: ");
+    string boleta = Validaciones::pedirCadena("Ingrese Boleta a buscar: ");
     Alumno* alu = alumnos.buscar(boleta);
+
     if (alu) {
-        cout << "-------------------------" << endl;
+        cout << "\n--- RESULTADO ---" << endl;
         cout << "Boleta: " << alu->getBoleta() << endl;
         cout << "Nombre: " << alu->getNombreCompleto() << endl;
         cout << "Grupo:  " << alu->getIdGrupoInscrito() << endl;
-        cout << "Ciclo:  " << alu->getNombreCiclo() << endl;
-        cout << "-------------------------" << endl;
+        cout << "Estado: " << (alu->getEstatusInscrito()?"Activo":"Inactivo") << endl;
     } else {
         cout << ">> No encontrado." << endl;
     }
@@ -186,41 +213,166 @@ void GestionEscolar::buscarAlumno() {
 
 void GestionEscolar::darBajaAlumno() {
     string boleta = Validaciones::pedirCadena("Ingrese Boleta a eliminar: ");
-    // La lista se encarga de reestructurar punteros y liberar memoria
     alumnos.eliminar(boleta);
-    // Guardamos la nueva estructura en disco
     alumnos.guardarEnArchivo();
 }
 
-// --- GESTIÓN DE PROFESORES ---
+// ==========================================
+//           GESTIÓN DE PROFESORES
+// ==========================================
 
 void GestionEscolar::menuProfesores() {
     int opc;
     do {
-        cout << "\n--- MENU PROFESORES ---" << endl;
+        limpiarPantalla();
+        cout << "--- MENU PROFESORES ---" << endl;
         cout << "1. Registrar Profesor" << endl;
-        cout << "2. Ver Lista de Profesores" << endl;
+        cout << "2. Buscar Profesor" << endl;
+        cout << "3. Listar Todos los Registros" << endl;
         cout << "0. Regresar" << endl;
-        opc = Validaciones::pedirEntero("Opcion: ", 0, 2);
+        opc = Validaciones::pedirEntero("Opcion: ", 0, 3);
 
         switch(opc) {
-            case 1: registrarProfesor(); break;
-            case 2: profesores.listar(); break;
+            case 1: registrarProfesor(); pausar(); break;
+            case 2: buscarProfesor(); pausar(); break;
+            case 3: profesores.listar(); pausar(); break;
         }
     } while(opc != 0);
 }
 
 void GestionEscolar::registrarProfesor() {
+    limpiarPantalla();
+    cout << "--- REGISTRO DE PROFESOR ---" << endl;
     Profesor p;
+
     p.setNombreCompleto(Validaciones::pedirCadena("Nombre Completo: "));
-    p.setCedula(Validaciones::pedirCadena("Cedula Profesional: "));
+    p.setTelefono(Validaciones::pedirCadena("Telefono: "));
     p.setBoletaTrabajador(generarBoletaProfesor());
 
-    profesores.insertarInicio(p);
+    cout << "\nSeleccione el Grupo Titular:" << endl;
+    grupos.listar();
+    cout << "NOTA: Escriba '0' si no sera titular." << endl;
+
+    bool grupoValido = false;
+    do {
+        string idG = Validaciones::pedirCadena("ID Grupo: ");
+        if (idG == "0") {
+            p.setIdGrupoTitular("SIN_ASIGNAR");
+            grupoValido = true;
+        } else if (grupos.existe(idG)) {
+            p.setIdGrupoTitular(idG);
+            grupoValido = true;
+        } else {
+            cout << ">> Error: El grupo no existe. Intente de nuevo." << endl;
+        }
+    } while (!grupoValido);
+
+    profesores.insertar(p);
     profesores.guardarEnArchivo();
 
-    cout << ">> Profesor registrado: " << p.getBoletaTrabajador() << endl;
+    cout << ">> Profesor registrado: " << p.getBoletaTrabajador()
+         << " | Titular de: " << p.getIdGrupoTitular() << endl;
 }
 
-// --- (Opcional) Funciones para crear grupos/ciclos desde menú ---
-// Se implementarian de forma similar usando Validaciones y lista.insertar()
+void GestionEscolar::buscarProfesor() {
+    string boleta = Validaciones::pedirCadena("Ingrese Boleta Docente: ");
+    Profesor* p = profesores.buscar(boleta);
+
+    if (p) {
+        cout << "\n--- DATOS PROFESOR ---" << endl;
+        cout << "Boleta:  " << p->getBoletaTrabajador() << endl;
+        cout << "Nombre:  " << p->getNombreCompleto() << endl;
+        cout << "Titular: " << p->getIdGrupoTitular() << endl;
+    } else {
+        cout << ">> Profesor no encontrado." << endl;
+    }
+}
+
+// ==========================================
+//           GESTIÓN DE GRUPOS
+// ==========================================
+
+void GestionEscolar::menuGrupos() {
+    int opc;
+    do {
+        limpiarPantalla();
+        cout << "--- MENU GRUPOS ---" << endl;
+        cout << "1. Listar Registros de Grupos" << endl; // Opción explícita solicitada
+        cout << "2. Crear Nuevo Grupo" << endl;
+        cout << "0. Regresar" << endl;
+        opc = Validaciones::pedirEntero("Opcion: ", 0, 2);
+
+        switch(opc) {
+            case 1: grupos.listar(); pausar(); break;
+            case 2: crearGrupo(); pausar(); break;
+        }
+    } while(opc != 0);
+}
+
+void GestionEscolar::crearGrupo() {
+    cout << "\n--- CREAR GRUPO ---" << endl;
+    string id = Validaciones::pedirCadena("ID del Grupo (ej. 1MA): ");
+
+    if (grupos.existe(id)) {
+        cout << ">> Error: Ese ID de grupo ya existe." << endl;
+        return;
+    }
+
+    int nivel = Validaciones::pedirEntero("Nivel (1-6): ", 1, 6);
+
+    char turno;
+    cout << "Turno (M/V): "; cin >> turno; Validaciones::limpiarBuffer();
+
+    char secuencia;
+    cout << "Secuencia (A, B, C...): "; cin >> secuencia; Validaciones::limpiarBuffer();
+
+    Grupo g(id, nivel, turno, secuencia);
+    grupos.insertar(g);
+    grupos.guardarEnArchivo();
+
+    cout << ">> Grupo creado exitosamente." << endl;
+}
+
+// ==========================================
+//           GESTIÓN DE CICLOS
+// ==========================================
+
+void GestionEscolar::menuCiclos() {
+    int opc;
+    do {
+        limpiarPantalla();
+        cout << "--- MENU CICLOS ---" << endl;
+        cout << "Ciclo Actual: " << ciclos.obtenerCicloActual() << endl;
+        cout << "-------------------" << endl;
+        cout << "1. Listar Registros de Ciclos" << endl; // Opción explícita solicitada
+        cout << "2. Crear Nuevo Ciclo" << endl;
+        cout << "0. Regresar" << endl;
+        opc = Validaciones::pedirEntero("Opcion: ", 0, 2);
+
+        switch(opc) {
+            case 1: ciclos.listar(); pausar(); break;
+            case 2: crearCiclo(); pausar(); break;
+        }
+    } while(opc != 0);
+}
+
+void GestionEscolar::crearCiclo() {
+    cout << "\n--- CREAR CICLO ESCOLAR ---" << endl;
+
+    Ciclo c;
+    c.setNombreCiclo(Validaciones::pedirCadena("Nombre del Ciclo (ej. 2025-2): "));
+
+    cout << ">> Defina fecha de Inicio:" << endl;
+    c.setInicio(Validaciones::pedirFecha("Fecha Inicio"));
+
+    cout << ">> Defina fecha de Fin:" << endl;
+    c.setFin(Validaciones::pedirFecha("Fecha Fin"));
+
+    int activoInput = Validaciones::pedirEntero("¿Es el ciclo activo? (1=Si, 0=No): ", 0, 1);
+    c.setActivo(activoInput == 1);
+
+    ciclos.insertar(c);
+    ciclos.guardarEnArchivo();
+
+    cout << ">> Ciclo registrado." << endl;
+}
