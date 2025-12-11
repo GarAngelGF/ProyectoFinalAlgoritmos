@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\PC BULLOCK\Desktop\AlgoritmosFinal\src\Controladores\GestionEscolar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\PC BULLOCK\Desktop\AlgoritmosFinal\src\Estructuras\EstructAlumno.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\PC BULLOCK\Desktop\AlgoritmosFinal\src\Estructuras\EstructCiclos.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\PC BULLOCK\Desktop\AlgoritmosFinal\src\Estructuras\EstructGrupos.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\PC BULLOCK\Desktop\AlgoritmosFinal\src\Estructuras\EstructProfe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\PC BULLOCK\Desktop\AlgoritmosFinal\src\Modelos\Alumno.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\PC BULLOCK\Desktop\AlgoritmosFinal\src\Modelos\Ciclo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\PC BULLOCK\Desktop\AlgoritmosFinal\src\Modelos\Grupo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\PC BULLOCK\Desktop\AlgoritmosFinal\src\Modelos\Profesor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\PC BULLOCK\Desktop\AlgoritmosFinal\src\Utilidades\Validaciones.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\PC BULLOCK\Desktop\AlgoritmosFinal\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\PC BULLOCK\Desktop\AlgoritmosFinal\Include\Controladores\GestionEscolar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\PC BULLOCK\Desktop\AlgoritmosFinal\Include\Estructuras\EstructAlumno.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\PC BULLOCK\Desktop\AlgoritmosFinal\Include\Estructuras\EstructCiclos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\PC BULLOCK\Desktop\AlgoritmosFinal\Include\Estructuras\EstructGrupos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\PC BULLOCK\Desktop\AlgoritmosFinal\Include\Estructuras\EstructProfe.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\PC BULLOCK\Desktop\AlgoritmosFinal\Include\Modelos\Alumno.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\PC BULLOCK\Desktop\AlgoritmosFinal\Include\Modelos\Ciclo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\PC BULLOCK\Desktop\AlgoritmosFinal\Include\Modelos\Grupo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\PC BULLOCK\Desktop\AlgoritmosFinal\Include\Modelos\Profesor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\PC BULLOCK\Desktop\AlgoritmosFinal\Include\Utilidades\Comunes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\PC BULLOCK\Desktop\AlgoritmosFinal\Include\Utilidades\Validaciones.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\PC BULLOCK\Desktop\AlgoritmosFinal\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{6769DB9C-2ED7-3D65-A8B2-1448EFBA37EF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{737893D8-2E15-3E09-AA88-4A8C1019F364}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

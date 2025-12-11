@@ -1,0 +1,10 @@
+^C:\USERS\PC BULLOCK\DESKTOP\ALGORITMOSFINAL\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/PC BULLOCK/Desktop/AlgoritmosFinal" "-BC:/Users/PC BULLOCK/Desktop/AlgoritmosFinal/build" --check-stamp-file "C:/Users/PC BULLOCK/Desktop/AlgoritmosFinal/build/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

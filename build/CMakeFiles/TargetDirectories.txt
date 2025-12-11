@@ -1,0 +1,5 @@
+C:/Users/PC BULLOCK/Desktop/AlgoritmosFinal/build/CMakeFiles/Proyecto_Final_Algoritmos_Equipo_6.dir
+C:/Users/PC BULLOCK/Desktop/AlgoritmosFinal/build/CMakeFiles/PACKAGE.dir
+C:/Users/PC BULLOCK/Desktop/AlgoritmosFinal/build/CMakeFiles/INSTALL.dir
+C:/Users/PC BULLOCK/Desktop/AlgoritmosFinal/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/PC BULLOCK/Desktop/AlgoritmosFinal/build/CMakeFiles/ZERO_CHECK.dir

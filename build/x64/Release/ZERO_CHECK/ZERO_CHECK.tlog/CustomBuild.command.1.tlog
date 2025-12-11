@@ -1,0 +1,10 @@
+^C:\USERS\PC BULLOCK\DESKTOP\ALGORITMOSFINAL\BUILD\CMAKEFILES\1430099C23BD7D0452ECC4FAC1E0A3E4\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/PC BULLOCK/Desktop/AlgoritmosFinal" "-BC:/Users/PC BULLOCK/Desktop/AlgoritmosFinal/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/Users/PC BULLOCK/Desktop/AlgoritmosFinal/build/Proyecto_Final_Algoritmos_Equipo_6.slnx"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
