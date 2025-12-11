@@ -1,6 +1,6 @@
 #include "../../include/Controladores/GestionEscolar.h"
 
-// AGREGADO: Librerías para asegurar que la carpeta Data exista al iniciar
+//Librerías para asegurar que la carpeta Data exista al iniciar
 #ifdef _WIN32
 #include <direct.h> // Para _mkdir en Windows
 #else
@@ -23,13 +23,12 @@ void GestionEscolar::limpiarPantalla() {
 
 void GestionEscolar::pausar() {
     cout << "\n";
-    Validaciones::pedirCadena("Presione Enter para continuar...");
+    Validaciones::pedirCadena("Presione Enter para continuar o escriba 0 para regresar al menú anterior");
 }
 
 // --- INICIALIZACIÓN ---
 void GestionEscolar::inicializarSistema() {
     limpiarPantalla();
-
     // CAMBIO: Asegurar que la carpeta Data exista antes de cargar nada
     // Esto previene errores si es la primera vez que se ejecuta el programa
 #ifdef _WIN32
@@ -37,14 +36,10 @@ void GestionEscolar::inicializarSistema() {
 #else
     mkdir("Data", 0777);
 #endif
-
-    cout << ">> Cargando sistema y archivos JSON desde carpeta 'Data'..." << endl;
-
     ciclos.cargarDeArchivo();
     grupos.cargarDeArchivo();
     profesores.cargarDeArchivo();
     alumnos.cargarDeArchivo();
-
     // Si no hay ciclos (primera ejecución), cargamos datos por defecto
     if (ciclos.obtenerCicloActual() == "SIN_CICLO") {
         cargarDatosIniciales();
@@ -52,8 +47,6 @@ void GestionEscolar::inicializarSistema() {
 }
 
 void GestionEscolar::cargarDatosIniciales() {
-    cout << ">> Inicializando datos por defecto..." << endl;
-
     Ciclo c;
     c.setNombreCiclo("2024-2025");
     c.setActivo(true);
@@ -85,16 +78,16 @@ void GestionEscolar::generarReporteGeneral() {
     cout << "      REPORTE GENERAL DEL SISTEMA" << endl;
     cout << "========================================" << endl;
 
-    cout << "\n>>> 1. CICLOS ESCOLARES REGISTRADOS <<<" << endl;
+    cout << "\n1. CICLOS ESCOLARES REGISTRADOS <<<" << endl;
     ciclos.listar();
 
-    cout << "\n>>> 2. GRUPOS REGISTRADOS <<<" << endl;
+    cout << "\n2. GRUPOS REGISTRADOS <<<" << endl;
     grupos.listar();
 
-    cout << "\n>>> 3. PROFESORES REGISTRADOS <<<" << endl;
+    cout << "\n3. PROFESORES REGISTRADOS <<<" << endl;
     profesores.listar();
 
-    cout << "\n>>> 4. ALUMNOS REGISTRADOS <<<" << endl;
+    cout << "\n4. ALUMNOS REGISTRADOS <<<" << endl;
     alumnos.listar(false); // false para mostrar todos (incluyendo bajas)
 
     cout << "\n========================================" << endl;
@@ -187,7 +180,7 @@ void GestionEscolar::registrarAlumno() {
     alumnos.insertar(nuevo);
     alumnos.guardarEnArchivo();
 
-    cout << ">> Alumno registrado con EXITO. Boleta: " << nuevo.getBoleta() << endl;
+    cout << " Alumno registrado con EXITO. Boleta: " << nuevo.getBoleta() << endl;
 }
 
 void GestionEscolar::inscribirAlumno() {
@@ -206,14 +199,14 @@ void GestionEscolar::inscribirAlumno() {
             alu->setIdGrupoInscrito(idGrupo);
             alu->setEstatusInscrito(true);
             alumnos.guardarEnArchivo();
-            cout << ">> Inscripcion realizada." << endl;
+            cout << " Inscripcion realizada." << endl;
         }
         else {
-            cout << ">> Error: Grupo no existe." << endl;
+            cout << "Error: Grupo no existe." << endl;
         }
     }
     else {
-        cout << ">> Error: Alumno no encontrado." << endl;
+        cout << "Error: Alumno no encontrado." << endl;
     }
 }
 
@@ -229,7 +222,7 @@ void GestionEscolar::buscarAlumno() {
         cout << "Estado: " << (alu->getEstatusInscrito() ? "Activo" : "Inactivo") << endl;
     }
     else {
-        cout << ">> No encontrado." << endl;
+        cout << "No encontrado." << endl;
     }
 }
 
@@ -273,7 +266,7 @@ void GestionEscolar::registrarProfesor() {
 
     cout << "\nSeleccione el Grupo Titular:" << endl;
     grupos.listar();
-    cout << "NOTA: Escriba '0' si no sera titular." << endl;
+    cout <<"NOTA: Escriba '0' si no sera titular." << endl;
 
     bool grupoValido = false;
     do {
@@ -287,15 +280,15 @@ void GestionEscolar::registrarProfesor() {
             grupoValido = true;
         }
         else {
-            cout << ">> Error: El grupo no existe. Intente de nuevo." << endl;
+            cout << "Error: El grupo no existe. Intente de nuevo." << endl;
         }
     } while (!grupoValido);
 
     profesores.insertar(p);
     profesores.guardarEnArchivo();
 
-    cout << ">> Profesor registrado: " << p.getBoletaTrabajador()
-        << " | Titular de: " << p.getIdGrupoTitular() << endl;
+    cout << "Profesor registrado: " << p.getBoletaTrabajador()
+        << "| Titular de: " << p.getIdGrupoTitular() << endl;
 }
 
 void GestionEscolar::buscarProfesor() {
@@ -309,7 +302,7 @@ void GestionEscolar::buscarProfesor() {
         cout << "Titular: " << p->getIdGrupoTitular() << endl;
     }
     else {
-        cout << ">> Profesor no encontrado." << endl;
+        cout << "Profesor no encontrado." << endl;
     }
 }
 
@@ -339,7 +332,7 @@ void GestionEscolar::crearGrupo() {
     string id = Validaciones::pedirCadena("ID del Grupo (ej. 1MA): ");
 
     if (grupos.existe(id)) {
-        cout << ">> Error: Ese ID de grupo ya existe." << endl;
+        cout << "Error: Ese ID de grupo ya existe." << endl;
         return;
     }
 
@@ -355,7 +348,7 @@ void GestionEscolar::crearGrupo() {
     grupos.insertar(g);
     grupos.guardarEnArchivo();
 
-    cout << ">> Grupo creado exitosamente." << endl;
+    cout << "Grupo creado exitosamente." << endl;
 }
 
 // ==========================================
@@ -387,10 +380,10 @@ void GestionEscolar::crearCiclo() {
     Ciclo c;
     c.setNombreCiclo(Validaciones::pedirCadena("Nombre del Ciclo (ej. 2025-2): "));
 
-    cout << ">> Defina fecha de Inicio:" << endl;
+    cout << " Defina fecha de Inicio:" << endl;
     c.setInicio(Validaciones::pedirFecha("Fecha Inicio"));
 
-    cout << ">> Defina fecha de Fin:" << endl;
+    cout << " Defina fecha de Fin:" << endl;
     c.setFin(Validaciones::pedirFecha("Fecha Fin"));
 
     int activoInput = Validaciones::pedirEntero("¿Es el ciclo activo? (1=Si, 0=No): ", 0, 1);
@@ -399,5 +392,5 @@ void GestionEscolar::crearCiclo() {
     ciclos.insertar(c);
     ciclos.guardarEnArchivo();
 
-    cout << ">> Ciclo registrado." << endl;
+    cout << " Ciclo registrado." << endl;
 }

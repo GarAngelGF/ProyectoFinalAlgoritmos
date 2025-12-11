@@ -51,10 +51,10 @@ namespace Validaciones {
                     limpiarBuffer(); // Limpiar el Enter que queda en el buffer
                     return valor;
                 } else {
-                    cout << ">> Error: El valor debe estar entre " << min << " y " << max << ".\n";
+                    cout << "Error: El valor debe estar entre " << min << " y " << max << ".\n";
                 }
             } else {
-                cout << ">> Error: Ingrese un numero valido.\n";
+                cout << "Error: Ingrese un numero valido.\n";
                 cin.clear(); // Restaura el estado de cin
                 limpiarBuffer();
             }
@@ -70,7 +70,7 @@ namespace Validaciones {
             if (!entrada.empty()) {
                 return entrada;
             }
-            cout << ">> Error: El campo no puede estar vacio.\n";
+            cout << "Error: El campo no puede estar vacio.\n";
         }
     }
 
@@ -86,7 +86,7 @@ namespace Validaciones {
             if (esFechaValida(f)) {
                 valida = true;
             } else {
-                cout << ">> Error: Fecha logica incorrecta (ej. 30 de Febrero). Intente de nuevo.\n";
+                cout << "Error: Fecha logica incorrecta (ej. 30 de Febrero). Intente de nuevo.\n";
             }
         } while (!valida);
         return f;
