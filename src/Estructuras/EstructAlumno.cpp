@@ -1,4 +1,9 @@
 #include "../../include/Estructuras/EstructAlumno.h"
+#ifdef _WIN32
+#include <direct.h> // Para _mkdir en Windows
+#else
+#include <sys/stat.h> // Para mkdir en Linux/Mac
+#endif
 
 ListaAlumnos::ListaAlumnos() : cabeza(nullptr), cola(nullptr) {}
 
@@ -16,7 +21,8 @@ void ListaAlumnos::insertar(Alumno alumno) {
     NodoAlumno* nuevo = new NodoAlumno(alumno);
     if (!cabeza) {
         cabeza = cola = nuevo;
-    } else {
+    }
+    else {
         cola->siguiente = nuevo;
         nuevo->anterior = cola;
         cola = nuevo;
@@ -30,18 +36,15 @@ void ListaAlumnos::eliminar(string boleta) {
     NodoAlumno* actual = cabeza;
     while (actual != nullptr) {
         if (actual->dato.getBoleta() == boleta) {
-            // Caso 1: Es la cabeza
             if (actual == cabeza) {
                 cabeza = actual->siguiente;
                 if (cabeza) cabeza->anterior = nullptr;
-                else cola = nullptr; // La lista quedó vacía
+                else cola = nullptr;
             }
-            // Caso 2: Es la cola
             else if (actual == cola) {
                 cola = actual->anterior;
                 cola->siguiente = nullptr;
             }
-            // Caso 3: Intermedio
             else {
                 actual->anterior->siguiente = actual->siguiente;
                 actual->siguiente->anterior = actual->anterior;
@@ -75,7 +78,7 @@ void ListaAlumnos::listar(bool soloActivos) {
         bool mostrar = !soloActivos || temp->dato.getEstatusInscrito();
         if (mostrar) {
             cout << temp->dato.getBoleta() << " - " << temp->dato.getNombreCompleto()
-                 << " [" << (temp->dato.getEstatusInscrito() ? "ACTIVO" : "BAJA") << "]" << endl;
+                << " [" << (temp->dato.getEstatusInscrito() ? "ACTIVO" : "BAJA") << "]" << endl;
         }
         temp = temp->siguiente;
     }
@@ -84,8 +87,20 @@ void ListaAlumnos::listar(bool soloActivos) {
 // --- PERSISTENCIA JSON ---
 
 void ListaAlumnos::guardarEnArchivo() {
-    ofstream archivo("data/alumnos.json");
-    if (!archivo.is_open()) return;
+    // 1. Crear carpeta Data si no existe
+#ifdef _WIN32
+    _mkdir("Data");
+#else
+    mkdir("Data", 0777);
+#endif
+
+    // 2. Guardar en la ruta Data/
+    ofstream archivo("Data/alumnos.json");
+
+    if (!archivo.is_open()) {
+        cerr << "Error: No se pudo crear el archivo Data/alumnos.json" << endl;
+        return;
+    }
 
     archivo << "[\n";
     NodoAlumno* temp = cabeza;
@@ -99,7 +114,7 @@ void ListaAlumnos::guardarEnArchivo() {
         archivo << "    \"estatus\": \"" << (temp->dato.getEstatusInscrito() ? "1" : "0") << "\"\n";
         archivo << "  }";
 
-        if (temp->siguiente) archivo << ","; // Coma si hay más elementos
+        if (temp->siguiente) archivo << ",";
         archivo << "\n";
 
         temp = temp->siguiente;
@@ -113,8 +128,6 @@ string ListaAlumnos::extraerValorJson(string linea) {
     if (posDosPuntos == string::npos) return "";
 
     string valor = linea.substr(posDosPuntos + 1);
-
-    // Limpiar comillas
     size_t firstQuote = valor.find('\"');
     size_t lastQuote = valor.rfind('\"');
 
@@ -125,8 +138,7 @@ string ListaAlumnos::extraerValorJson(string linea) {
 }
 
 void ListaAlumnos::cargarDeArchivo() {
-    ifstream archivo("data/alumnos.json");
-
+    ifstream archivo("Data/alumnos.json"); // Ruta actualizada
     if (!archivo.is_open()) return;
 
     string linea;
@@ -136,7 +148,7 @@ void ListaAlumnos::cargarDeArchivo() {
     while (getline(archivo, linea)) {
         if (linea.find("{") != string::npos) {
             leyendoObjeto = true;
-            aActual = Alumno(); // Reset
+            aActual = Alumno();
             aActual.setEstatusInscrito(false);
             aActual.setIdGrupoInscrito("SIN_ASIGNAR");
         }

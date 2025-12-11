@@ -1,9 +1,12 @@
 #include "../../include/Estructuras/EstructProfe.h"
+#ifdef _WIN32
+#include <direct.h>
+#else
+#include <sys/stat.h>
+#endif
 
-// Constructor
 ArbolProfesores::ArbolProfesores() : raiz(nullptr) {}
 
-// Destructor
 ArbolProfesores::~ArbolProfesores() {
     destruirRec(raiz);
 }
@@ -16,7 +19,6 @@ void ArbolProfesores::destruirRec(NodoProfesor* nodo) {
     }
 }
 
-// --- INSERTAR (Lógica de Árbol Binario de Búsqueda) ---
 void ArbolProfesores::insertar(Profesor p) {
     insertarRec(raiz, p);
 }
@@ -25,7 +27,6 @@ void ArbolProfesores::insertarRec(NodoProfesor*& nodo, Profesor p) {
     if (nodo == nullptr) {
         nodo = new NodoProfesor(p);
     } else {
-        // Ordenamos por boletaTrabajador alfabéticamente/numéricamente
         if (p.getBoletaTrabajador() < nodo->dato.getBoletaTrabajador()) {
             insertarRec(nodo->izq, p);
         } else {
@@ -34,12 +35,11 @@ void ArbolProfesores::insertarRec(NodoProfesor*& nodo, Profesor p) {
     }
 }
 
-// --- BUSCAR (Búsqueda Binaria) ---
 Profesor* ArbolProfesores::buscar(string boleta) {
     NodoProfesor* actual = raiz;
     while (actual != nullptr) {
         if (boleta == actual->dato.getBoletaTrabajador()) {
-            return &actual->dato; // Encontrado
+            return &actual->dato; 
         }
         else if (boleta < actual->dato.getBoletaTrabajador()) {
             actual = actual->izq;
@@ -48,10 +48,9 @@ Profesor* ArbolProfesores::buscar(string boleta) {
             actual = actual->der;
         }
     }
-    return nullptr; // No encontrado
+    return nullptr;
 }
 
-// --- LISTAR (In-Order: Imprime ordenado) ---
 void ArbolProfesores::listar() {
     cout << "--- LISTA DE PROFESORES (Ordenada por Boleta) ---" << endl;
     if (!raiz) cout << "(Vacio)" << endl;
@@ -61,7 +60,6 @@ void ArbolProfesores::listar() {
 void ArbolProfesores::listarRec(NodoProfesor* nodo) {
     if (nodo) {
         listarRec(nodo->izq);
-        // Mostrar datos relevantes incluyendo el nuevo campo titular
         cout << "[" << nodo->dato.getBoletaTrabajador() << "] "
              << nodo->dato.getNombreCompleto()
              << " | Titular: " << nodo->dato.getIdGrupoTitular() << endl;
@@ -72,8 +70,17 @@ void ArbolProfesores::listarRec(NodoProfesor* nodo) {
 // --- PERSISTENCIA JSON ---
 
 void ArbolProfesores::guardarEnArchivo() {
-    ofstream archivo("data/profesores.json");
-    if (!archivo.is_open()) return;
+    #ifdef _WIN32
+        _mkdir("Data");
+    #else
+        mkdir("Data", 0777);
+    #endif
+
+    ofstream archivo("Data/profesores.json");
+    if (!archivo.is_open()) {
+        cerr << "Error: No se pudo crear el archivo Data/profesores.json" << endl;
+        return;
+    }
 
     archivo << "[\n";
     bool primero = true;
@@ -84,8 +91,6 @@ void ArbolProfesores::guardarEnArchivo() {
 
 void ArbolProfesores::guardarRec(NodoProfesor* nodo, ofstream& archivo, bool& primero) {
     if (nodo) {
-        // Recorrido Pre-Order para guardar, aunque In-Order también sirve
-
         if (!primero) {
             archivo << ",\n";
         }
@@ -98,25 +103,19 @@ void ArbolProfesores::guardarRec(NodoProfesor* nodo, ofstream& archivo, bool& pr
         archivo << "    \"gruposAsignados\": \"" << nodo->dato.getGruposAsignados() << "\"\n";
         archivo << "  }";
 
-        primero = false; // Ya pasamos el primero, los siguientes llevan coma
+        primero = false;
 
         guardarRec(nodo->izq, archivo, primero);
         guardarRec(nodo->der, archivo, primero);
     }
 }
 
-// Helper simple para limpiar comillas y comas del valor
 string ArbolProfesores::extraerValorJson(string linea) {
     size_t posDosPuntos = linea.find(':');
     if (posDosPuntos == string::npos) return "";
-
     string valor = linea.substr(posDosPuntos + 1);
-
-    // Buscar la primera comilla
     size_t firstQuote = valor.find('\"');
-    // Buscar la última comilla
     size_t lastQuote = valor.rfind('\"');
-
     if (firstQuote != string::npos && lastQuote != string::npos && lastQuote > firstQuote) {
         return valor.substr(firstQuote + 1, lastQuote - firstQuote - 1);
     }
@@ -124,18 +123,17 @@ string ArbolProfesores::extraerValorJson(string linea) {
 }
 
 void ArbolProfesores::cargarDeArchivo() {
-    ifstream archivo("data/profesores.json");
+    ifstream archivo("Data/profesores.json"); // Ruta actualizada
     if (!archivo.is_open()) return;
 
     string linea;
     Profesor pActual;
     bool leyendoObjeto = false;
 
-    // Lectura lineal simple buscando claves
     while (getline(archivo, linea)) {
         if (linea.find("{") != string::npos) {
             leyendoObjeto = true;
-            pActual = Profesor(); // Reiniciar objeto
+            pActual = Profesor();
         }
         else if (linea.find("}") != string::npos && leyendoObjeto) {
             insertar(pActual);
@@ -144,16 +142,12 @@ void ArbolProfesores::cargarDeArchivo() {
         else if (leyendoObjeto) {
             if (linea.find("\"boleta\"") != string::npos)
                 pActual.setBoletaTrabajador(extraerValorJson(linea));
-
             else if (linea.find("\"nombre\"") != string::npos)
                 pActual.setNombreCompleto(extraerValorJson(linea));
-
             else if (linea.find("\"telefono\"") != string::npos)
                 pActual.setTelefono(extraerValorJson(linea));
-
             else if (linea.find("\"titularDe\"") != string::npos)
                 pActual.setIdGrupoTitular(extraerValorJson(linea));
-
             else if (linea.find("\"gruposAsignados\"") != string::npos)
                 pActual.setGruposAsignados(extraerValorJson(linea));
         }

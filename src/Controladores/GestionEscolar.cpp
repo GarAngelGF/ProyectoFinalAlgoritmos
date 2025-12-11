@@ -1,5 +1,12 @@
 #include "../../include/Controladores/GestionEscolar.h"
 
+// AGREGADO: Librerías para asegurar que la carpeta Data exista al iniciar
+#ifdef _WIN32
+#include <direct.h> // Para _mkdir en Windows
+#else
+#include <sys/stat.h> // Para mkdir en Linux/Mac
+#endif
+
 // Constructor
 GestionEscolar::GestionEscolar() {
     srand(time(0)); // Semilla para aleatorios
@@ -22,29 +29,41 @@ void GestionEscolar::pausar() {
 // --- INICIALIZACIÓN ---
 void GestionEscolar::inicializarSistema() {
     limpiarPantalla();
-    cout << ">> Cargando sistema y archivos JSON..." << endl;
+
+    // CAMBIO: Asegurar que la carpeta Data exista antes de cargar nada
+    // Esto previene errores si es la primera vez que se ejecuta el programa
+#ifdef _WIN32
+    _mkdir("Data");
+#else
+    mkdir("Data", 0777);
+#endif
+
+    cout << ">> Cargando sistema y archivos JSON desde carpeta 'Data'..." << endl;
 
     ciclos.cargarDeArchivo();
     grupos.cargarDeArchivo();
     profesores.cargarDeArchivo();
     alumnos.cargarDeArchivo();
 
+    // Si no hay ciclos (primera ejecución), cargamos datos por defecto
     if (ciclos.obtenerCicloActual() == "SIN_CICLO") {
         cargarDatosIniciales();
     }
 }
 
 void GestionEscolar::cargarDatosIniciales() {
+    cout << ">> Inicializando datos por defecto..." << endl;
+
     Ciclo c;
     c.setNombreCiclo("2024-2025");
     c.setActivo(true);
-    c.setInicio({1,8,2024});
-    c.setFin({15,7,2025});
+    c.setInicio({ 1,8,2024 });
+    c.setFin({ 15,7,2025 });
     ciclos.insertar(c);
-    ciclos.guardarEnArchivo();
+    ciclos.guardarEnArchivo(); // Esto creará el archivo en Data/ciclos.json
 
     grupos.insertar(Grupo("1MA", 1, 'M', 'A'));
-    grupos.guardarEnArchivo();
+    grupos.guardarEnArchivo(); // Esto creará el archivo en Data/grupos.json
 }
 
 // --- GENERADORES ID ---
@@ -95,19 +114,19 @@ void GestionEscolar::menuPrincipal() {
         cout << "2. Gestion de Profesores" << endl;
         cout << "3. Gestion de Grupos" << endl;
         cout << "4. Gestion de Ciclos Escolares" << endl;
-        cout << "5. Generar Reporte General (TODO)" << endl; // Nueva Opción
+        cout << "5. Generar Reporte General" << endl;
         cout << "0. Salir" << endl;
         cout << "===============================" << endl;
 
         opc = Validaciones::pedirEntero("Seleccione una opcion: ", 0, 5);
 
         switch (opc) {
-            case 1: menuAlumnos(); break;
-            case 2: menuProfesores(); break;
-            case 3: menuGrupos(); break;
-            case 4: menuCiclos(); break;
-            case 5: generarReporteGeneral(); pausar(); break;
-            case 0: cout << "Saliendo..." << endl; break;
+        case 1: menuAlumnos(); break;
+        case 2: menuProfesores(); break;
+        case 3: menuGrupos(); break;
+        case 4: menuCiclos(); break;
+        case 5: generarReporteGeneral(); pausar(); break;
+        case 0: cout << "Saliendo..." << endl; break;
         }
     } while (opc != 0);
 }
@@ -130,12 +149,12 @@ void GestionEscolar::menuAlumnos() {
 
         opc = Validaciones::pedirEntero("Opcion: ", 0, 5);
 
-        switch(opc) {
-            case 1: registrarAlumno(); pausar(); break;
-            case 2: inscribirAlumno(); pausar(); break;
-            case 3: buscarAlumno(); pausar(); break;
-            case 4: darBajaAlumno(); pausar(); break;
-            case 5: alumnos.listar(false); pausar(); break;
+        switch (opc) {
+        case 1: registrarAlumno(); pausar(); break;
+        case 2: inscribirAlumno(); pausar(); break;
+        case 3: buscarAlumno(); pausar(); break;
+        case 4: darBajaAlumno(); pausar(); break;
+        case 5: alumnos.listar(false); pausar(); break;
         }
     } while (opc != 0);
 }
@@ -188,10 +207,12 @@ void GestionEscolar::inscribirAlumno() {
             alu->setEstatusInscrito(true);
             alumnos.guardarEnArchivo();
             cout << ">> Inscripcion realizada." << endl;
-        } else {
+        }
+        else {
             cout << ">> Error: Grupo no existe." << endl;
         }
-    } else {
+    }
+    else {
         cout << ">> Error: Alumno no encontrado." << endl;
     }
 }
@@ -205,8 +226,9 @@ void GestionEscolar::buscarAlumno() {
         cout << "Boleta: " << alu->getBoleta() << endl;
         cout << "Nombre: " << alu->getNombreCompleto() << endl;
         cout << "Grupo:  " << alu->getIdGrupoInscrito() << endl;
-        cout << "Estado: " << (alu->getEstatusInscrito()?"Activo":"Inactivo") << endl;
-    } else {
+        cout << "Estado: " << (alu->getEstatusInscrito() ? "Activo" : "Inactivo") << endl;
+    }
+    else {
         cout << ">> No encontrado." << endl;
     }
 }
@@ -232,12 +254,12 @@ void GestionEscolar::menuProfesores() {
         cout << "0. Regresar" << endl;
         opc = Validaciones::pedirEntero("Opcion: ", 0, 3);
 
-        switch(opc) {
-            case 1: registrarProfesor(); pausar(); break;
-            case 2: buscarProfesor(); pausar(); break;
-            case 3: profesores.listar(); pausar(); break;
+        switch (opc) {
+        case 1: registrarProfesor(); pausar(); break;
+        case 2: buscarProfesor(); pausar(); break;
+        case 3: profesores.listar(); pausar(); break;
         }
-    } while(opc != 0);
+    } while (opc != 0);
 }
 
 void GestionEscolar::registrarProfesor() {
@@ -259,10 +281,12 @@ void GestionEscolar::registrarProfesor() {
         if (idG == "0") {
             p.setIdGrupoTitular("SIN_ASIGNAR");
             grupoValido = true;
-        } else if (grupos.existe(idG)) {
+        }
+        else if (grupos.existe(idG)) {
             p.setIdGrupoTitular(idG);
             grupoValido = true;
-        } else {
+        }
+        else {
             cout << ">> Error: El grupo no existe. Intente de nuevo." << endl;
         }
     } while (!grupoValido);
@@ -271,7 +295,7 @@ void GestionEscolar::registrarProfesor() {
     profesores.guardarEnArchivo();
 
     cout << ">> Profesor registrado: " << p.getBoletaTrabajador()
-         << " | Titular de: " << p.getIdGrupoTitular() << endl;
+        << " | Titular de: " << p.getIdGrupoTitular() << endl;
 }
 
 void GestionEscolar::buscarProfesor() {
@@ -283,7 +307,8 @@ void GestionEscolar::buscarProfesor() {
         cout << "Boleta:  " << p->getBoletaTrabajador() << endl;
         cout << "Nombre:  " << p->getNombreCompleto() << endl;
         cout << "Titular: " << p->getIdGrupoTitular() << endl;
-    } else {
+    }
+    else {
         cout << ">> Profesor no encontrado." << endl;
     }
 }
@@ -297,16 +322,16 @@ void GestionEscolar::menuGrupos() {
     do {
         limpiarPantalla();
         cout << "--- MENU GRUPOS ---" << endl;
-        cout << "1. Listar Registros de Grupos" << endl; // Opción explícita solicitada
+        cout << "1. Listar Registros de Grupos" << endl;
         cout << "2. Crear Nuevo Grupo" << endl;
         cout << "0. Regresar" << endl;
         opc = Validaciones::pedirEntero("Opcion: ", 0, 2);
 
-        switch(opc) {
-            case 1: grupos.listar(); pausar(); break;
-            case 2: crearGrupo(); pausar(); break;
+        switch (opc) {
+        case 1: grupos.listar(); pausar(); break;
+        case 2: crearGrupo(); pausar(); break;
         }
-    } while(opc != 0);
+    } while (opc != 0);
 }
 
 void GestionEscolar::crearGrupo() {
@@ -344,16 +369,16 @@ void GestionEscolar::menuCiclos() {
         cout << "--- MENU CICLOS ---" << endl;
         cout << "Ciclo Actual: " << ciclos.obtenerCicloActual() << endl;
         cout << "-------------------" << endl;
-        cout << "1. Listar Registros de Ciclos" << endl; // Opción explícita solicitada
+        cout << "1. Listar Registros de Ciclos" << endl;
         cout << "2. Crear Nuevo Ciclo" << endl;
         cout << "0. Regresar" << endl;
         opc = Validaciones::pedirEntero("Opcion: ", 0, 2);
 
-        switch(opc) {
-            case 1: ciclos.listar(); pausar(); break;
-            case 2: crearCiclo(); pausar(); break;
+        switch (opc) {
+        case 1: ciclos.listar(); pausar(); break;
+        case 2: crearCiclo(); pausar(); break;
         }
-    } while(opc != 0);
+    } while (opc != 0);
 }
 
 void GestionEscolar::crearCiclo() {
