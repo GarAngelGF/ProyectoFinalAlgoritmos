@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "CMakeFiles\\ProyectoFinalAlgoritmos.dir\\src\\Estructuras\\EstructCiclos.cpp.obj",
+            "outputs": [
+                "C:\\Users\\PC BULLOCK\\Desktop\\Algoritmos\\ProyectoFinalAlgoritmos\\out\\build\\x64-Debug\\vc140.pdb",
+                "CMakeFiles\\ProyectoFinalAlgoritmos.dir\\src\\Estructuras\\EstructCiclos.cpp.obj.ddi"
+            ],
+            "requires": []
+        }
+    ]
+}

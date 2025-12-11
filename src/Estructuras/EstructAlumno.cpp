@@ -126,6 +126,7 @@ string ListaAlumnos::extraerValorJson(string linea) {
 
 void ListaAlumnos::cargarDeArchivo() {
     ifstream archivo("data/alumnos.json");
+
     if (!archivo.is_open()) return;
 
     string linea;
