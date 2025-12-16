@@ -23,7 +23,7 @@ void GestionEscolar::limpiarPantalla() {
 
 void GestionEscolar::pausar() {
     cout << "\n";
-    Validaciones::pedirCadena("Presione Enter para continuar o escriba 0 para regresar al menú anterior");
+    Validaciones::pedirCadena("Escriba 0 para regresar al menu anterior");
 }
 
 // --- INICIALIZACIÓN ---

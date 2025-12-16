@@ -65,7 +65,9 @@ events:
         - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
         - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
         - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\PC BULLOCK\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Program Files\\Azure Data Studio\\bin"
         - "C:\\Users\\PC BULLOCK\\.dotnet\\tools"
         - "C:\\Users\\PC BULLOCK\\AppData\\Local\\JetBrains\\Toolbox\\scripts"
         - "C:\\Users\\PC BULLOCK\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
@@ -89,7 +91,7 @@ events:
       The output was:
       0
       Versión de MSBuild 18.3.0-preview-25570-20+708535641 para .NET Framework
-      Compilación iniciada a las 11/12/2025 05:13:36 p. m..
+      Compilación iniciada a las 15/12/2025 09:07:32 p. m..
       
       Proyecto "C:\\Users\\PC BULLOCK\\Desktop\\AlgoritmosFinal\\build\\CMakeFiles\\4.2.1\\CompilerIdC\\CompilerIdC.vcxproj" en nodo 1 (destinos predeterminados).
       PrepareForBuild:
@@ -118,7 +120,7 @@ events:
           0 Advertencia(s)
           0 Errores
       
-      Tiempo transcurrido 00:00:01.34
+      Tiempo transcurrido 00:00:01.24
       
       
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
@@ -171,6 +173,7 @@ events:
       - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
       - "C:/Program Files/Microsoft SQL Server/170/Tools/Binn/"
       - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/CMake/bin/"
       - "C:/Users/PC BULLOCK/AppData/Local/Microsoft/WindowsApps/"
       - "C:/Users/PC BULLOCK/.dotnet/tools/"
       - "C:/Users/PC BULLOCK/AppData/Local/JetBrains/Toolbox/scripts/"
@@ -212,7 +215,9 @@ events:
         - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
         - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
         - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\PC BULLOCK\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Program Files\\Azure Data Studio\\bin"
         - "C:\\Users\\PC BULLOCK\\.dotnet\\tools"
         - "C:\\Users\\PC BULLOCK\\AppData\\Local\\JetBrains\\Toolbox\\scripts"
         - "C:\\Users\\PC BULLOCK\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
@@ -263,6 +268,7 @@ events:
       - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
       - "C:/Program Files/Microsoft SQL Server/170/Tools/Binn/"
       - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/CMake/bin/"
       - "C:/Users/PC BULLOCK/AppData/Local/Microsoft/WindowsApps/"
       - "C:/Users/PC BULLOCK/.dotnet/tools/"
       - "C:/Users/PC BULLOCK/AppData/Local/JetBrains/Toolbox/scripts/"
@@ -333,6 +339,9 @@ events:
       - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/lld-link.com"
       - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/lld-link.exe"
       - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/lld-link"
+      - "C:/Program Files/CMake/bin/lld-link.com"
+      - "C:/Program Files/CMake/bin/lld-link.exe"
+      - "C:/Program Files/CMake/bin/lld-link"
       - "C:/Users/PC BULLOCK/AppData/Local/Microsoft/WindowsApps/lld-link.com"
       - "C:/Users/PC BULLOCK/AppData/Local/Microsoft/WindowsApps/lld-link.exe"
       - "C:/Users/PC BULLOCK/AppData/Local/Microsoft/WindowsApps/lld-link"
@@ -384,7 +393,9 @@ events:
         - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
         - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
         - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\PC BULLOCK\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Program Files\\Azure Data Studio\\bin"
         - "C:\\Users\\PC BULLOCK\\.dotnet\\tools"
         - "C:\\Users\\PC BULLOCK\\AppData\\Local\\JetBrains\\Toolbox\\scripts"
         - "C:\\Users\\PC BULLOCK\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
@@ -433,6 +444,7 @@ events:
       - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
       - "C:/Program Files/Microsoft SQL Server/170/Tools/Binn/"
       - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/CMake/bin/"
       - "C:/Users/PC BULLOCK/AppData/Local/Microsoft/WindowsApps/"
       - "C:/Users/PC BULLOCK/.dotnet/tools/"
       - "C:/Users/PC BULLOCK/AppData/Local/JetBrains/Toolbox/scripts/"
@@ -474,7 +486,9 @@ events:
         - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
         - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
         - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\PC BULLOCK\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Program Files\\Azure Data Studio\\bin"
         - "C:\\Users\\PC BULLOCK\\.dotnet\\tools"
         - "C:\\Users\\PC BULLOCK\\AppData\\Local\\JetBrains\\Toolbox\\scripts"
         - "C:\\Users\\PC BULLOCK\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
@@ -523,6 +537,7 @@ events:
       - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
       - "C:/Program Files/Microsoft SQL Server/170/Tools/Binn/"
       - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/CMake/bin/"
       - "C:/Users/PC BULLOCK/AppData/Local/Microsoft/WindowsApps/"
       - "C:/Users/PC BULLOCK/.dotnet/tools/"
       - "C:/Users/PC BULLOCK/AppData/Local/JetBrains/Toolbox/scripts/"
@@ -593,6 +608,9 @@ events:
       - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/mt.com"
       - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/mt.exe"
       - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/mt"
+      - "C:/Program Files/CMake/bin/mt.com"
+      - "C:/Program Files/CMake/bin/mt.exe"
+      - "C:/Program Files/CMake/bin/mt"
       - "C:/Users/PC BULLOCK/AppData/Local/Microsoft/WindowsApps/mt.com"
       - "C:/Users/PC BULLOCK/AppData/Local/Microsoft/WindowsApps/mt.exe"
       - "C:/Users/PC BULLOCK/AppData/Local/Microsoft/WindowsApps/mt"
@@ -644,7 +662,9 @@ events:
         - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
         - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
         - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\PC BULLOCK\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Program Files\\Azure Data Studio\\bin"
         - "C:\\Users\\PC BULLOCK\\.dotnet\\tools"
         - "C:\\Users\\PC BULLOCK\\AppData\\Local\\JetBrains\\Toolbox\\scripts"
         - "C:\\Users\\PC BULLOCK\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
@@ -693,6 +713,7 @@ events:
       - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
       - "C:/Program Files/Microsoft SQL Server/170/Tools/Binn/"
       - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/CMake/bin/"
       - "C:/Users/PC BULLOCK/AppData/Local/Microsoft/WindowsApps/"
       - "C:/Users/PC BULLOCK/.dotnet/tools/"
       - "C:/Users/PC BULLOCK/AppData/Local/JetBrains/Toolbox/scripts/"
@@ -734,7 +755,9 @@ events:
         - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
         - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
         - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\PC BULLOCK\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Program Files\\Azure Data Studio\\bin"
         - "C:\\Users\\PC BULLOCK\\.dotnet\\tools"
         - "C:\\Users\\PC BULLOCK\\AppData\\Local\\JetBrains\\Toolbox\\scripts"
         - "C:\\Users\\PC BULLOCK\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
@@ -799,7 +822,9 @@ events:
         - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
         - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
         - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\PC BULLOCK\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Program Files\\Azure Data Studio\\bin"
         - "C:\\Users\\PC BULLOCK\\.dotnet\\tools"
         - "C:\\Users\\PC BULLOCK\\AppData\\Local\\JetBrains\\Toolbox\\scripts"
         - "C:\\Users\\PC BULLOCK\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
@@ -823,7 +848,7 @@ events:
       The output was:
       0
       Versión de MSBuild 18.3.0-preview-25570-20+708535641 para .NET Framework
-      Compilación iniciada a las 11/12/2025 05:13:38 p. m..
+      Compilación iniciada a las 15/12/2025 09:07:33 p. m..
       
       Proyecto "C:\\Users\\PC BULLOCK\\Desktop\\AlgoritmosFinal\\build\\CMakeFiles\\4.2.1\\CompilerIdCXX\\CompilerIdCXX.vcxproj" en nodo 1 (destinos predeterminados).
       PrepareForBuild:
@@ -852,7 +877,7 @@ events:
           0 Advertencia(s)
           0 Errores
       
-      Tiempo transcurrido 00:00:01.13
+      Tiempo transcurrido 00:00:00.70
       
       
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
@@ -905,6 +930,7 @@ events:
       - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
       - "C:/Program Files/Microsoft SQL Server/170/Tools/Binn/"
       - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/CMake/bin/"
       - "C:/Users/PC BULLOCK/AppData/Local/Microsoft/WindowsApps/"
       - "C:/Users/PC BULLOCK/.dotnet/tools/"
       - "C:/Users/PC BULLOCK/AppData/Local/JetBrains/Toolbox/scripts/"
@@ -975,6 +1001,9 @@ events:
       - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/lld-link.com"
       - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/lld-link.exe"
       - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/lld-link"
+      - "C:/Program Files/CMake/bin/lld-link.com"
+      - "C:/Program Files/CMake/bin/lld-link.exe"
+      - "C:/Program Files/CMake/bin/lld-link"
       - "C:/Users/PC BULLOCK/AppData/Local/Microsoft/WindowsApps/lld-link.com"
       - "C:/Users/PC BULLOCK/AppData/Local/Microsoft/WindowsApps/lld-link.exe"
       - "C:/Users/PC BULLOCK/AppData/Local/Microsoft/WindowsApps/lld-link"
@@ -1026,7 +1055,9 @@ events:
         - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
         - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
         - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\PC BULLOCK\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Program Files\\Azure Data Studio\\bin"
         - "C:\\Users\\PC BULLOCK\\.dotnet\\tools"
         - "C:\\Users\\PC BULLOCK\\AppData\\Local\\JetBrains\\Toolbox\\scripts"
         - "C:\\Users\\PC BULLOCK\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
@@ -1077,6 +1108,7 @@ events:
       - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
       - "C:/Program Files/Microsoft SQL Server/170/Tools/Binn/"
       - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/CMake/bin/"
       - "C:/Users/PC BULLOCK/AppData/Local/Microsoft/WindowsApps/"
       - "C:/Users/PC BULLOCK/.dotnet/tools/"
       - "C:/Users/PC BULLOCK/AppData/Local/JetBrains/Toolbox/scripts/"
@@ -1156,6 +1188,9 @@ events:
       - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/rc.com"
       - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/rc.exe"
       - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/rc"
+      - "C:/Program Files/CMake/bin/rc.com"
+      - "C:/Program Files/CMake/bin/rc.exe"
+      - "C:/Program Files/CMake/bin/rc"
       - "C:/Users/PC BULLOCK/AppData/Local/Microsoft/WindowsApps/rc.com"
       - "C:/Users/PC BULLOCK/AppData/Local/Microsoft/WindowsApps/rc.exe"
       - "C:/Users/PC BULLOCK/AppData/Local/Microsoft/WindowsApps/rc"
@@ -1243,7 +1278,9 @@ events:
         - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
         - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
         - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\PC BULLOCK\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Program Files\\Azure Data Studio\\bin"
         - "C:\\Users\\PC BULLOCK\\.dotnet\\tools"
         - "C:\\Users\\PC BULLOCK\\AppData\\Local\\JetBrains\\Toolbox\\scripts"
         - "C:\\Users\\PC BULLOCK\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
@@ -1266,8 +1303,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "C:/Users/PC BULLOCK/Desktop/AlgoritmosFinal/build/CMakeFiles/CMakeScratch/TryCompile-z582ih"
-      binary: "C:/Users/PC BULLOCK/Desktop/AlgoritmosFinal/build/CMakeFiles/CMakeScratch/TryCompile-z582ih"
+      source: "C:/Users/PC BULLOCK/Desktop/AlgoritmosFinal/build/CMakeFiles/CMakeScratch/TryCompile-vmddzw"
+      binary: "C:/Users/PC BULLOCK/Desktop/AlgoritmosFinal/build/CMakeFiles/CMakeScratch/TryCompile-vmddzw"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Ob0 /Od"
@@ -1276,39 +1313,39 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/PC BULLOCK/Desktop/AlgoritmosFinal/build/CMakeFiles/CMakeScratch/TryCompile-z582ih'
+        Change Dir: 'C:/Users/PC BULLOCK/Desktop/AlgoritmosFinal/build/CMakeFiles/CMakeScratch/TryCompile-vmddzw'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_ae6b6.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_8136e.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
         Versi├│n de MSBuild 18.3.0-preview-25570-20+708535641 para .NET Framework
-        Compilaci├│n iniciada a las 11/12/2025 05:13:40 p. m..
+        Compilaci├│n iniciada a las 15/12/2025 09:07:35 p. m..
         
-        Proyecto "C:\\Users\\PC BULLOCK\\Desktop\\AlgoritmosFinal\\build\\CMakeFiles\\CMakeScratch\\TryCompile-z582ih\\cmTC_ae6b6.vcxproj" en nodo 1 (destinos predeterminados).
+        Proyecto "C:\\Users\\PC BULLOCK\\Desktop\\AlgoritmosFinal\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vmddzw\\cmTC_8136e.vcxproj" en nodo 1 (destinos predeterminados).
         PrepareForBuild:
           La salida estructurada est├í habilitada. El formato del diagn├│stico del compilador reflejar├í la jerarqu├¡a de errores. Consulte https://aka.ms/cpp/structured-output para obtener m├ís detalles.
-          Creando directorio "C:\\Users\\PC BULLOCK\\Desktop\\AlgoritmosFinal\\build\\CMakeFiles\\CMakeScratch\\TryCompile-z582ih\\Debug\\".
-          Creando directorio "cmTC_ae6b6.dir\\Debug\\cmTC_ae6b6.tlog\\".
+          Creando directorio "C:\\Users\\PC BULLOCK\\Desktop\\AlgoritmosFinal\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vmddzw\\Debug\\".
+          Creando directorio "cmTC_8136e.dir\\Debug\\cmTC_8136e.tlog\\".
         InitializeBuildStatus:
-          Se crear├í "cmTC_ae6b6.dir\\Debug\\cmTC_ae6b6.tlog\\unsuccessfulbuild" porque se especific├│ "AlwaysCreate".
-          Aplicando tarea Touch a "cmTC_ae6b6.dir\\Debug\\cmTC_ae6b6.tlog\\unsuccessfulbuild".
+          Se crear├í "cmTC_8136e.dir\\Debug\\cmTC_8136e.tlog\\unsuccessfulbuild" porque se especific├│ "AlwaysCreate".
+          Aplicando tarea Touch a "cmTC_8136e.dir\\Debug\\cmTC_8136e.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_ae6b6.dir\\Debug\\\\" /Fd"cmTC_ae6b6.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_8136e.dir\\Debug\\\\" /Fd"cmTC_8136e.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
           Compilador de optimizaci├│n de C/C++ de Microsoft (R) versi├│n 19.50.35720 para x64
           (C) Microsoft Corporation. Todos los derechos reservados.
-          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_ae6b6.dir\\Debug\\\\" /Fd"cmTC_ae6b6.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_8136e.dir\\Debug\\\\" /Fd"cmTC_8136e.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
           CMakeCCompilerABI.c
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\PC BULLOCK\\Desktop\\AlgoritmosFinal\\build\\CMakeFiles\\CMakeScratch\\TryCompile-z582ih\\Debug\\cmTC_ae6b6.exe" /INCREMENTAL /ILK:"cmTC_ae6b6.dir\\Debug\\cmTC_ae6b6.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/PC BULLOCK/Desktop/AlgoritmosFinal/build/CMakeFiles/CMakeScratch/TryCompile-z582ih/Debug/cmTC_ae6b6.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/PC BULLOCK/Desktop/AlgoritmosFinal/build/CMakeFiles/CMakeScratch/TryCompile-z582ih/Debug/cmTC_ae6b6.lib" /MACHINE:X64  /machine:x64 cmTC_ae6b6.dir\\Debug\\CMakeCCompilerABI.obj
-          cmTC_ae6b6.vcxproj -> C:\\Users\\PC BULLOCK\\Desktop\\AlgoritmosFinal\\build\\CMakeFiles\\CMakeScratch\\TryCompile-z582ih\\Debug\\cmTC_ae6b6.exe
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\PC BULLOCK\\Desktop\\AlgoritmosFinal\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vmddzw\\Debug\\cmTC_8136e.exe" /INCREMENTAL /ILK:"cmTC_8136e.dir\\Debug\\cmTC_8136e.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/PC BULLOCK/Desktop/AlgoritmosFinal/build/CMakeFiles/CMakeScratch/TryCompile-vmddzw/Debug/cmTC_8136e.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/PC BULLOCK/Desktop/AlgoritmosFinal/build/CMakeFiles/CMakeScratch/TryCompile-vmddzw/Debug/cmTC_8136e.lib" /MACHINE:X64  /machine:x64 cmTC_8136e.dir\\Debug\\CMakeCCompilerABI.obj
+          cmTC_8136e.vcxproj -> C:\\Users\\PC BULLOCK\\Desktop\\AlgoritmosFinal\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vmddzw\\Debug\\cmTC_8136e.exe
         FinalizeBuildStatus:
-          Se eliminar├í el archivo "cmTC_ae6b6.dir\\Debug\\cmTC_ae6b6.tlog\\unsuccessfulbuild".
-          Aplicando tarea Touch a "cmTC_ae6b6.dir\\Debug\\cmTC_ae6b6.tlog\\cmTC_ae6b6.lastbuildstate".
-        Compilaci├│n del proyecto terminada "C:\\Users\\PC BULLOCK\\Desktop\\AlgoritmosFinal\\build\\CMakeFiles\\CMakeScratch\\TryCompile-z582ih\\cmTC_ae6b6.vcxproj" (destinos predeterminados).
+          Se eliminar├í el archivo "cmTC_8136e.dir\\Debug\\cmTC_8136e.tlog\\unsuccessfulbuild".
+          Aplicando tarea Touch a "cmTC_8136e.dir\\Debug\\cmTC_8136e.tlog\\cmTC_8136e.lastbuildstate".
+        Compilaci├│n del proyecto terminada "C:\\Users\\PC BULLOCK\\Desktop\\AlgoritmosFinal\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vmddzw\\cmTC_8136e.vcxproj" (destinos predeterminados).
         
         Compilaci├│n correcta.
             0 Advertencia(s)
             0 Errores
         
-        Tiempo transcurrido 00:00:00.65
+        Tiempo transcurrido 00:00:00.62
         
       exitCode: 0
   -
@@ -1348,8 +1385,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "C:/Users/PC BULLOCK/Desktop/AlgoritmosFinal/build/CMakeFiles/CMakeScratch/TryCompile-hi76l6"
-      binary: "C:/Users/PC BULLOCK/Desktop/AlgoritmosFinal/build/CMakeFiles/CMakeScratch/TryCompile-hi76l6"
+      source: "C:/Users/PC BULLOCK/Desktop/AlgoritmosFinal/build/CMakeFiles/CMakeScratch/TryCompile-u12iyn"
+      binary: "C:/Users/PC BULLOCK/Desktop/AlgoritmosFinal/build/CMakeFiles/CMakeScratch/TryCompile-u12iyn"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/Ob0 /Od"
@@ -1359,39 +1396,39 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/PC BULLOCK/Desktop/AlgoritmosFinal/build/CMakeFiles/CMakeScratch/TryCompile-hi76l6'
+        Change Dir: 'C:/Users/PC BULLOCK/Desktop/AlgoritmosFinal/build/CMakeFiles/CMakeScratch/TryCompile-u12iyn'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_72ed7.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_3a16c.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
         Versi├│n de MSBuild 18.3.0-preview-25570-20+708535641 para .NET Framework
-        Compilaci├│n iniciada a las 11/12/2025 05:13:42 p. m..
+        Compilaci├│n iniciada a las 15/12/2025 09:07:36 p. m..
         
-        Proyecto "C:\\Users\\PC BULLOCK\\Desktop\\AlgoritmosFinal\\build\\CMakeFiles\\CMakeScratch\\TryCompile-hi76l6\\cmTC_72ed7.vcxproj" en nodo 1 (destinos predeterminados).
+        Proyecto "C:\\Users\\PC BULLOCK\\Desktop\\AlgoritmosFinal\\build\\CMakeFiles\\CMakeScratch\\TryCompile-u12iyn\\cmTC_3a16c.vcxproj" en nodo 1 (destinos predeterminados).
         PrepareForBuild:
           La salida estructurada est├í habilitada. El formato del diagn├│stico del compilador reflejar├í la jerarqu├¡a de errores. Consulte https://aka.ms/cpp/structured-output para obtener m├ís detalles.
-          Creando directorio "C:\\Users\\PC BULLOCK\\Desktop\\AlgoritmosFinal\\build\\CMakeFiles\\CMakeScratch\\TryCompile-hi76l6\\Debug\\".
-          Creando directorio "cmTC_72ed7.dir\\Debug\\cmTC_72ed7.tlog\\".
+          Creando directorio "C:\\Users\\PC BULLOCK\\Desktop\\AlgoritmosFinal\\build\\CMakeFiles\\CMakeScratch\\TryCompile-u12iyn\\Debug\\".
+          Creando directorio "cmTC_3a16c.dir\\Debug\\cmTC_3a16c.tlog\\".
         InitializeBuildStatus:
-          Se crear├í "cmTC_72ed7.dir\\Debug\\cmTC_72ed7.tlog\\unsuccessfulbuild" porque se especific├│ "AlwaysCreate".
-          Aplicando tarea Touch a "cmTC_72ed7.dir\\Debug\\cmTC_72ed7.tlog\\unsuccessfulbuild".
+          Se crear├í "cmTC_3a16c.dir\\Debug\\cmTC_3a16c.tlog\\unsuccessfulbuild" porque se especific├│ "AlwaysCreate".
+          Aplicando tarea Touch a "cmTC_3a16c.dir\\Debug\\cmTC_3a16c.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /Fo"cmTC_72ed7.dir\\Debug\\\\" /Fd"cmTC_72ed7.dir\\Debug\\vc145.pdb" /external:W1 /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /Fo"cmTC_3a16c.dir\\Debug\\\\" /Fd"cmTC_3a16c.dir\\Debug\\vc145.pdb" /external:W1 /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
           Compilador de optimizaci├│n de C/C++ de Microsoft (R) versi├│n 19.50.35720 para x64
           (C) Microsoft Corporation. Todos los derechos reservados.
-          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /Fo"cmTC_72ed7.dir\\Debug\\\\" /Fd"cmTC_72ed7.dir\\Debug\\vc145.pdb" /external:W1 /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /Fo"cmTC_3a16c.dir\\Debug\\\\" /Fd"cmTC_3a16c.dir\\Debug\\vc145.pdb" /external:W1 /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
           CMakeCXXCompilerABI.cpp
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\PC BULLOCK\\Desktop\\AlgoritmosFinal\\build\\CMakeFiles\\CMakeScratch\\TryCompile-hi76l6\\Debug\\cmTC_72ed7.exe" /INCREMENTAL /ILK:"cmTC_72ed7.dir\\Debug\\cmTC_72ed7.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/PC BULLOCK/Desktop/AlgoritmosFinal/build/CMakeFiles/CMakeScratch/TryCompile-hi76l6/Debug/cmTC_72ed7.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/PC BULLOCK/Desktop/AlgoritmosFinal/build/CMakeFiles/CMakeScratch/TryCompile-hi76l6/Debug/cmTC_72ed7.lib" /MACHINE:X64  /machine:x64 cmTC_72ed7.dir\\Debug\\CMakeCXXCompilerABI.obj
-          cmTC_72ed7.vcxproj -> C:\\Users\\PC BULLOCK\\Desktop\\AlgoritmosFinal\\build\\CMakeFiles\\CMakeScratch\\TryCompile-hi76l6\\Debug\\cmTC_72ed7.exe
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\PC BULLOCK\\Desktop\\AlgoritmosFinal\\build\\CMakeFiles\\CMakeScratch\\TryCompile-u12iyn\\Debug\\cmTC_3a16c.exe" /INCREMENTAL /ILK:"cmTC_3a16c.dir\\Debug\\cmTC_3a16c.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/PC BULLOCK/Desktop/AlgoritmosFinal/build/CMakeFiles/CMakeScratch/TryCompile-u12iyn/Debug/cmTC_3a16c.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/PC BULLOCK/Desktop/AlgoritmosFinal/build/CMakeFiles/CMakeScratch/TryCompile-u12iyn/Debug/cmTC_3a16c.lib" /MACHINE:X64  /machine:x64 cmTC_3a16c.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_3a16c.vcxproj -> C:\\Users\\PC BULLOCK\\Desktop\\AlgoritmosFinal\\build\\CMakeFiles\\CMakeScratch\\TryCompile-u12iyn\\Debug\\cmTC_3a16c.exe
         FinalizeBuildStatus:
-          Se eliminar├í el archivo "cmTC_72ed7.dir\\Debug\\cmTC_72ed7.tlog\\unsuccessfulbuild".
-          Aplicando tarea Touch a "cmTC_72ed7.dir\\Debug\\cmTC_72ed7.tlog\\cmTC_72ed7.lastbuildstate".
-        Compilaci├│n del proyecto terminada "C:\\Users\\PC BULLOCK\\Desktop\\AlgoritmosFinal\\build\\CMakeFiles\\CMakeScratch\\TryCompile-hi76l6\\cmTC_72ed7.vcxproj" (destinos predeterminados).
+          Se eliminar├í el archivo "cmTC_3a16c.dir\\Debug\\cmTC_3a16c.tlog\\unsuccessfulbuild".
+          Aplicando tarea Touch a "cmTC_3a16c.dir\\Debug\\cmTC_3a16c.tlog\\cmTC_3a16c.lastbuildstate".
+        Compilaci├│n del proyecto terminada "C:\\Users\\PC BULLOCK\\Desktop\\AlgoritmosFinal\\build\\CMakeFiles\\CMakeScratch\\TryCompile-u12iyn\\cmTC_3a16c.vcxproj" (destinos predeterminados).
         
         Compilaci├│n correcta.
             0 Advertencia(s)
             0 Errores
         
-        Tiempo transcurrido 00:00:00.73
+        Tiempo transcurrido 00:00:00.57
         
       exitCode: 0
   -
